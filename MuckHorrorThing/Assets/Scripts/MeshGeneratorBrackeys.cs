@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class MeshGenerator : MonoBehaviour
+public class MeshGeneratorBrackeys : MonoBehaviour
 {
-    Mesh mesh;
+    [SerializeField] Mesh mesh;
 
     Vector3[] vertices;
     int[] triangles;
@@ -13,7 +13,6 @@ public class MeshGenerator : MonoBehaviour
     public int xSize = 20;
     public int zSize = 20;
 
-    // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
@@ -21,6 +20,7 @@ public class MeshGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
+        gameObject.AddComponent<MeshCollider>();
     }
 
     void CreateShape()
@@ -31,9 +31,8 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                // float y = Mathf.PerlinNoise(x, z); // doesn't work for some reason ¯\_(ツ)_/¯
-                vertices[i] = new Vector3(x, 0, z);
-                i++;
+                float y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * 1.75f;
+                vertices[i++] = new Vector3(x, y, z);
             }
         }
 
