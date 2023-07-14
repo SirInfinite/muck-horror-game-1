@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 public class MeshGenerator : MonoBehaviour
 {
-    Mesh mesh;
+    [SerializeField] Mesh mesh;
 
     Vector3[] vertices;
     int[] triangles;
@@ -21,6 +21,7 @@ public class MeshGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
+        gameObject.AddComponent<MeshCollider>();
     }
 
     void CreateShape()
