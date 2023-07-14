@@ -30,10 +30,8 @@ public class MeshGeneratorBrackeys : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                vertices[i++] = new Vector3(x, 0, z);
-                float xPerlin = x / xSize;
-                float zPerlin = z / zSize;
-                float y = Mathf.PerlinNoise(xPerlin, zPerlin); // doesn't work for some reason ¯\_(ツ)_/¯
+                float y = Mathf.PerlinNoise(x * 0.3f, z * 0.3f) * 1.75f;
+                vertices[i++] = new Vector3(x, y, z);
             }
         }
 
