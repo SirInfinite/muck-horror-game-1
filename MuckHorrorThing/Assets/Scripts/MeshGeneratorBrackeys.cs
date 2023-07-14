@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter))]
-public class MeshGenerator : MonoBehaviour
+public class MeshGeneratorBrackeys : MonoBehaviour
 {
     Mesh mesh;
 
@@ -13,7 +13,6 @@ public class MeshGenerator : MonoBehaviour
     public int xSize = 20;
     public int zSize = 20;
 
-    // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
@@ -31,9 +30,10 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x <= xSize; x++)
             {
-                // float y = Mathf.PerlinNoise(x, z); // doesn't work for some reason ¯\_(ツ)_/¯
-                vertices[i] = new Vector3(x, 0, z);
-                i++;
+                vertices[i++] = new Vector3(x, 0, z);
+                float xPerlin = x / xSize;
+                float zPerlin = z / zSize;
+                float y = Mathf.PerlinNoise(xPerlin, zPerlin); // doesn't work for some reason ¯\_(ツ)_/¯
             }
         }
 
